@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-ink-100 dark:border-ink-800;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Visible keyboard focus ring for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #F2A93B;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Signature motif: a torn-ticket / price-tag perforation line, used to
+     divide product imagery from price footers throughout the storefront. */
+  .perforation {
+    position: relative;
+    border-top: 1px dashed theme('colors.ink.200');
+  }
+  .dark .perforation {
+    border-top-color: theme('colors.ink.700');
+  }
+  .perforation::before,
+  .perforation::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: theme('colors.canvas.light');
+  }
+  .dark .perforation::before,
+  .dark .perforation::after {
+    background: theme('colors.canvas.dark');
+  }
+  .perforation::before {
+    left: -6px;
+  }
+  .perforation::after {
+    right: -6px;
+  }
+
+  .price-tag {
+    @apply font-mono tracking-tight;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-ink-700 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-ink-600 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50 dark:bg-marigold-400 dark:text-ink-900 dark:hover:bg-marigold-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-ink-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink-700 transition-all duration-200 hover:border-ink-400 hover:bg-ink-50 active:scale-[0.97] dark:border-ink-700 dark:bg-surface-dark dark:text-ink-100 dark:hover:bg-ink-800;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-ink-600 transition-colors duration-200 hover:bg-ink-100 dark:text-ink-300 dark:hover:bg-ink-800;
+  }
+
+  .input-field {
+    @apply w-full rounded-lg border border-ink-200 bg-white px-4 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-colors focus:border-marigold-400 dark:border-ink-700 dark:bg-surface-dark dark:text-ink-50;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-ink-100 bg-surface-light shadow-card dark:border-ink-800 dark:bg-surface-dark;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-ink-100 dark:bg-ink-800;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.45) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 400px 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+}
